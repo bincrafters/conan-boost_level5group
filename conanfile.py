@@ -5,7 +5,7 @@ class BoostLevel5GroupConan(ConanFile):
     name = "Boost.Level5Group"
     version = "1.64.0"
     generators = "txt"
-    url = "https://github.com/bincrafters/conan-boost-iterator-utility"
+    url = "https://github.com/bincrafters/conan-boost-level5group"
     description = "Special package with all members of cyclic dependency group"
     license = "www.boost.org/users/license.html"
     requires = "Boost.Assert/1.64.0@bincrafters/testing", \
