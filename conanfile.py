@@ -8,6 +8,7 @@ class BoostLevel5GroupConan(ConanFile):
     url = "https://github.com/bincrafters/conan-boost-level5group"
     description = "Special package with all members of cyclic dependency group"
     license = "www.boost.org/users/license.html"
+    lib_short_names = ["bimap", "disjoint_sets", "graph", "graph_parallel", "mpi", "property_map"]
     requires = "Boost.Assert/1.64.0@bincrafters/testing", \
         "Boost.Bind/1.64.0@bincrafters/testing", \
         "Boost.Config/1.64.0@bincrafters/testing", \
@@ -62,85 +63,14 @@ class BoostLevel5GroupConan(ConanFile):
     # config0 core2 iterator5 mpl5 preprocessor0 static_assert1 throw_exception2 type_traits3
 
     def source(self):
-        self.run("git clone --depth=50 --branch=boost-{0} {1}.git"
-                 .format(self.version, "https://github.com/boostorg/concept_check"))     
-
-        self.run("git clone --depth=50 --branch=boost-{0} {1}.git"
-                 .format(self.version, "https://github.com/boostorg/conversion"))
-
-        self.run("git clone --depth=50 --branch=boost-{0} {1}.git"
-                 .format(self.version, "https://github.com/boostorg/detail"))
-
-        self.run("git clone --depth=50 --branch=boost-{0} {1}.git"
-                 .format(self.version, "https://github.com/boostorg/function"))
-
-        self.run("git clone --depth=50 --branch=boost-{0} {1}.git"
-                 .format(self.version, "https://github.com/boostorg/function_types"))
-
-        self.run("git clone --depth=50 --branch=boost-{0} {1}.git"
-                 .format(self.version, "https://github.com/boostorg/functional"))
-
-        self.run("git clone --depth=50 --branch=boost-{0} {1}.git"
-                 .format(self.version, "https://github.com/boostorg/fusion"))
-                 
-        self.run("git clone --depth=50 --branch=boost-{0} {1}.git"
-                 .format(self.version, "https://github.com/boostorg/iterator"))
-                        
-        self.run("git clone --depth=50 --branch=boost-{0} {1}.git"
-                 .format(self.version, "https://github.com/boostorg/mpl"))     
-
-        self.run("git clone --depth=50 --branch=boost-{0} {1}.git"
-                 .format(self.version, "https://github.com/boostorg/optional"))
-
-        self.run("git clone --depth=50 --branch=boost-{0} {1}.git"
-                 .format(self.version, "https://github.com/boostorg/type_index"))
-
-        self.run("git clone --depth=50 --branch=boost-{0} {1}.git"
-                 .format(self.version, "https://github.com/boostorg/typeof"))
-                 
-        self.run("git clone --depth=50 --branch=boost-{0} {1}.git"
-                 .format(self.version, "https://github.com/boostorg/utility"))
-                 
+        for lib_short_name in self.lib_short_names:
+            self.run("git clone --depth=50 --branch=boost-{0} https://github.com/boostorg/{1}.git"
+                     .format(self.version, lib_short_name))
+                     
     def package(self):
-
-        concept_check_dir = os.path.join(self.build_folder, "concept_check", "include")
-        self.copy(pattern="*", dst="include", src=concept_check_dir)
-
-        conversion_dir = os.path.join(self.build_folder, "conversion", "include")
-        self.copy(pattern="*", dst="include", src=conversion_dir)
-        
-        detail_dir = os.path.join(self.build_folder, "detail", "include")
-        self.copy(pattern="*", dst="include", src=detail_dir)
-
-        function_dir = os.path.join(self.build_folder, "function", "include")
-        self.copy(pattern="*", dst="include", src=function_dir)
-
-        function_types_dir = os.path.join(self.build_folder, "function_types", "include")
-        self.copy(pattern="*", dst="include", src=function_types_dir)
-
-        functional_dir = os.path.join(self.build_folder, "functional", "include")
-        self.copy(pattern="*", dst="include", src=functional_dir)
-
-        fusion_dir = os.path.join(self.build_folder, "fusion", "include")
-        self.copy(pattern="*", dst="include", src=fusion_dir)
-
-        iterator_dir = os.path.join(self.build_folder, "iterator", "include")
-        self.copy(pattern="*", dst="include", src=iterator_dir)
-        
-        mpl_dir = os.path.join(self.build_folder, "mpl", "include")
-        self.copy(pattern="*", dst="include", src=mpl_dir)
-        
-        optional_dir = os.path.join(self.build_folder, "optional", "include")
-        self.copy(pattern="*", dst="include", src=optional_dir)
-
-        functional_dir = os.path.join(self.build_folder, "type_index", "include")
-        self.copy(pattern="*", dst="include", src=functional_dir)
-
-        functional_dir = os.path.join(self.build_folder, "typeof", "include")
-        self.copy(pattern="*", dst="include", src=functional_dir)
-
-        utility_dir = os.path.join(self.build_folder, "utility", "include")
-        self.copy(pattern="*", dst="include", src=utility_dir)
+        for lib_short_name in self.lib_short_names:
+            include_dir = os.path.join(self.build_folder, lib_short_name, "include")
+            self.copy(pattern="*", dst="include", src=include_dir)
         
     def package_id(self):
         self.info.header_only()
