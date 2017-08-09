@@ -8,7 +8,7 @@ class BoostLevel5GroupConan(ConanFile):
     url = "https://github.com/bincrafters/conan-boost-level5group"
     description = "Special package with all members of cyclic dependency group"
     license = "www.boost.org/users/license.html"
-    lib_short_names = ["bimap", "disjoint_sets", "graph", "graph_parallel", "mpi", "property_map"]
+    lib_short_names = ["concept_check", "conversion", "detail", "function", "function_types", "functional", "fusion", "iterator", "mpl", "optional", "type_index", "typeof", "utility"]
     requires = "Boost.Assert/1.64.0@bincrafters/testing", \
         "Boost.Bind/1.64.0@bincrafters/testing", \
         "Boost.Config/1.64.0@bincrafters/testing", \
