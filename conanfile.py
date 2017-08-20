@@ -4,7 +4,7 @@ from conans import ConanFile, tools, os
 class BoostLevel5GroupConan(ConanFile):
     name = "Boost.Level5Group"
     version = "1.64.0"
-    generators = "txt"
+    short_paths = True
     url = "https://github.com/bincrafters/conan-boost-level5group"
     description = "Special package with all members of cyclic dependency group"
     license = "www.boost.org/users/license.html"
@@ -64,12 +64,12 @@ class BoostLevel5GroupConan(ConanFile):
 
     def source(self):
         for lib_short_name in self.lib_short_names:
-            self.run("git clone --depth=50 --branch=boost-{0} https://github.com/boostorg/{1}.git"
+            self.run("git clone --depth=1 --branch=boost-{0} https://github.com/boostorg/{1}.git"
                      .format(self.version, lib_short_name))
                      
     def package(self):
         for lib_short_name in self.lib_short_names:
-            include_dir = os.path.join(self.build_folder, lib_short_name, "include")
+            include_dir = os.path.join(lib_short_name, "include")
             self.copy(pattern="*", dst="include", src=include_dir)
         
     def package_id(self):
