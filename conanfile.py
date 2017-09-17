@@ -3,23 +3,23 @@ from conans import ConanFile, tools, os
 
 class BoostLevel5GroupConan(ConanFile):
     name = "Boost.Level5Group"
-    version = "1.64.0"
+    version = "1.65.1"
     short_paths = True
     url = "https://github.com/bincrafters/conan-boost-level5group"
     description = "Special package with all members of cyclic dependency group"
     license = "www.boost.org/users/license.html"
     lib_short_names = ["concept_check", "conversion", "detail", "function", "function_types", "functional", "fusion", "iterator", "mpl", "optional", "type_index", "typeof", "utility"]
-    requires = "Boost.Assert/1.64.0@bincrafters/testing", \
-        "Boost.Bind/1.64.0@bincrafters/testing", \
-        "Boost.Config/1.64.0@bincrafters/testing", \
-        "Boost.Core/1.64.0@bincrafters/testing", \
-        "Boost.Move/1.64.0@bincrafters/testing", \
-        "Boost.Predef/1.64.0@bincrafters/testing", \
-        "Boost.Preprocessor/1.64.0@bincrafters/testing", \
-        "Boost.Smart_Ptr/1.64.0@bincrafters/testing", \
-        "Boost.Static_Assert/1.64.0@bincrafters/testing", \
-        "Boost.Throw_Exception/1.64.0@bincrafters/testing",\
-        "Boost.Type_Traits/1.64.0@bincrafters/testing"
+    requires = "Boost.Assert/1.65.1@bincrafters/testing", \
+        "Boost.Bind/1.65.1@bincrafters/testing", \
+        "Boost.Config/1.65.1@bincrafters/testing", \
+        "Boost.Core/1.65.1@bincrafters/testing", \
+        "Boost.Move/1.65.1@bincrafters/testing", \
+        "Boost.Predef/1.65.1@bincrafters/testing", \
+        "Boost.Preprocessor/1.65.1@bincrafters/testing", \
+        "Boost.Smart_Ptr/1.65.1@bincrafters/testing", \
+        "Boost.Static_Assert/1.65.1@bincrafters/testing", \
+        "Boost.Throw_Exception/1.65.1@bincrafters/testing",\
+        "Boost.Type_Traits/1.65.1@bincrafters/testing"
 
     # Concept_Check Dependencies
     # config0 core2 mpl5 preprocessor0 type_traits3
