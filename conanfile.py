@@ -9,17 +9,17 @@ class BoostLevel5GroupConan(ConanFile):
     description = "Special package with all members of cyclic dependency group"
     license = "www.boost.org/users/license.html"
     lib_short_names = ["concept_check", "conversion", "detail", "function", "function_types", "functional", "fusion", "iterator", "mpl", "optional", "type_index", "typeof", "utility"]
-    requires = "Boost.Assert/1.65.1@bincrafters/testing", \
-        "Boost.Bind/1.65.1@bincrafters/testing", \
-        "Boost.Config/1.65.1@bincrafters/testing", \
-        "Boost.Core/1.65.1@bincrafters/testing", \
-        "Boost.Move/1.65.1@bincrafters/testing", \
-        "Boost.Predef/1.65.1@bincrafters/testing", \
-        "Boost.Preprocessor/1.65.1@bincrafters/testing", \
-        "Boost.Smart_Ptr/1.65.1@bincrafters/testing", \
-        "Boost.Static_Assert/1.65.1@bincrafters/testing", \
-        "Boost.Throw_Exception/1.65.1@bincrafters/testing",\
-        "Boost.Type_Traits/1.65.1@bincrafters/testing"
+    requires = "Boost.Assert/1.65.1@bincrafters/stable", \
+        "Boost.Bind/1.65.1@bincrafters/stable", \
+        "Boost.Config/1.65.1@bincrafters/stable", \
+        "Boost.Core/1.65.1@bincrafters/stable", \
+        "Boost.Move/1.65.1@bincrafters/stable", \
+        "Boost.Predef/1.65.1@bincrafters/stable", \
+        "Boost.Preprocessor/1.65.1@bincrafters/stable", \
+        "Boost.Smart_Ptr/1.65.1@bincrafters/stable", \
+        "Boost.Static_Assert/1.65.1@bincrafters/stable", \
+        "Boost.Throw_Exception/1.65.1@bincrafters/stable",\
+        "Boost.Type_Traits/1.65.1@bincrafters/stable"
 
     # Concept_Check Dependencies
     # config0 core2 mpl5 preprocessor0 type_traits3
