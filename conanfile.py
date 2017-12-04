@@ -1,16 +1,15 @@
 from conans import ConanFile, tools
-import os
 
 
 class BoostLevel5GroupConan(ConanFile):
     name = "Boost.Level5Group"
     version = "1.65.1"
-    short_paths = True
     url = "https://github.com/bincrafters/conan-boost-level5group"
     description = "Special package with all members of cyclic dependency group"
     license = "www.boost.org/users/license.html"
-    lib_short_names = ["concept_check", "conversion", "detail", "function", "function_types", "functional", "fusion", "iterator", "mpl", "optional", "type_index", "typeof", "utility"]
-    requires = "Boost.Assert/1.65.1@bincrafters/testing", \
+
+    requires = \
+        "Boost.Assert/1.65.1@bincrafters/testing", \
         "Boost.Bind/1.65.1@bincrafters/testing", \
         "Boost.Config/1.65.1@bincrafters/testing", \
         "Boost.Core/1.65.1@bincrafters/testing", \
@@ -19,62 +18,32 @@ class BoostLevel5GroupConan(ConanFile):
         "Boost.Preprocessor/1.65.1@bincrafters/testing", \
         "Boost.Smart_Ptr/1.65.1@bincrafters/testing", \
         "Boost.Static_Assert/1.65.1@bincrafters/testing", \
-        "Boost.Throw_Exception/1.65.1@bincrafters/testing",\
+        "Boost.Throw_Exception/1.65.1@bincrafters/testing", \
         "Boost.Type_Traits/1.65.1@bincrafters/testing"
 
-    # Concept_Check Dependencies
-    # config0 core2 mpl5 preprocessor0 type_traits3
+    lib_short_names = [
+        "concept_check", "conversion", "detail", "function", "function_types",
+        "functional", "fusion", "iterator", "mpl", "optional", "type_index",
+        "typeof", "utility"]
+    is_header_only = True
+    is_cycle_group = True
 
-    # Conversion Dependencies
-    # assert1 config0 smart_ptr4 throw_exception2 type_traits3 typeof5
+    # BEGIN
 
-    # Detail Dependencies
-    # config0 core2 mpl5 preprocessor0 static_assert1 type_traits3
+    short_paths = True
+    build_requires = "Boost.Generator/1.65.1@bincrafters/testing"
 
-    # Function Dependencies
-    # assert1 bind3 config0 core2 integer3 move3 mpl5 preprocessor0 throw_exception2 type_index5 type_traits3 typeof5
-
-    # Function_Types Dependencies
-    # config0 core2 detail5 mpl5 preprocessor0 type_traits3
-
-    # Functional Dependencies
-    # assert1 config0 core2 detail5 function5 function_types5 integer3 iterator5 mpl5 optional5
-    # preprocessor0 static_assert1 type_traits3 typeof5 utility5
-
-    # Fusion Dependencies
-    # config0 core2 function_types5 functional5 mpl5 preprocessor0 static_assert1 tuple4 type_traits3 typeof5 utility5
-
-    # Iterator Dependencies
-    # assert1 concept_check5 config0 conversion5 core2 detail5 function_types5 fusion5 mpl5
-    # optional5 smart_ptr4 static_assert1 type_traits3 utility5
-
-    # Mpl Dependencies
-    # config0 core2 predef0 preprocessor0 static_assert1 type_traits3 utility5
-
-    # Optional Dependencies
-    # assert1 config0 core2 detail5 move3 mpl5 static_assert1 throw_exception2 type_traits3 utility5
-
-    # Type_Index Dependencies
-    # config0 core2 functional5 mpl5 preprocessor0 smart_ptr4 static_assert1 throw_exception2 type_traits3
-
-    # Typeof Dependencies
-    # config0 core2 mpl5 preprocessor0 type_traits3
-
-    # Utility Dependencies
-    # config0 core2 iterator5 mpl5 preprocessor0 static_assert1 throw_exception2 type_traits3
-
-    def source(self):
-        boostorg_github = "https://github.com/boostorg"
-        archive_name = "boost-" + self.version  
-        for lib_short_name in self.lib_short_names:
-            tools.get("{0}/{1}/archive/{2}.tar.gz"
-                .format(boostorg_github, lib_short_name, archive_name))
-            os.rename(lib_short_name + "-" + archive_name, lib_short_name)
-                     
-    def package(self):
-        for lib_short_name in self.lib_short_names:
-            include_dir = os.path.join(lib_short_name, "include")
-            self.copy(pattern="*", dst="include", src=include_dir)
-        
     def package_id(self):
         self.info.header_only()
+
+    @property
+    def env(self):
+        try:
+            with tools.pythonpath(super(self.__class__, self)):
+                import boostgenerator # pylint: disable=F0401
+                boostgenerator.BoostConanFile(self)
+        except:
+            pass
+        return super(self.__class__, self).env
+
+    # END
