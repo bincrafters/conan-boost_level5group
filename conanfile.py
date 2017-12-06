@@ -4,11 +4,9 @@ from conans import ConanFile, tools
 class BoostLevel5GroupConan(ConanFile):
     name = "Boost.Level5Group"
     version = "1.65.1"
-    url = "https://github.com/bincrafters/conan-boost-level5group"
-    description = "Special package with all members of cyclic dependency group"
-    license = "www.boost.org/users/license.html"
 
     requires = \
+        "Boost.Generator/1.65.1@bincrafters/testing", \
         "Boost.Assert/1.65.1@bincrafters/testing", \
         "Boost.Bind/1.65.1@bincrafters/testing", \
         "Boost.Config/1.65.1@bincrafters/testing", \
@@ -30,20 +28,23 @@ class BoostLevel5GroupConan(ConanFile):
 
     # BEGIN
 
+    url = "https://github.com/bincrafters/conan-boost-level5group"
+    description = "Please visit http://www.boost.org/doc/libs/1_65_1"
+    license = "www.boost.org/users/license.html"
     short_paths = True
     build_requires = "Boost.Generator/1.65.1@bincrafters/testing"
-
-    def package_id(self):
-        self.info.header_only()
 
     @property
     def env(self):
         try:
             with tools.pythonpath(super(self.__class__, self)):
-                import boostgenerator # pylint: disable=F0401
+                import boostgenerator  # pylint: disable=F0401
                 boostgenerator.BoostConanFile(self)
         except:
             pass
         return super(self.__class__, self).env
+
+    def package_id(self):
+        self.info.header_only()
 
     # END
