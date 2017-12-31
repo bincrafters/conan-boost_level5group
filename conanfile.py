@@ -7,7 +7,7 @@ from conans import ConanFile, tools
 class BoostLevel5GroupConan(ConanFile):
     name = "boost_level5group"
     version = "1.66.0"
-    url = "https://github.com/bincrafters/conan-boost-level5group"
+    url = "https://github.com/bincrafters/conan-boost_level5group"
 
     lib_short_names = [
         "concept_check", "conversion", "detail", "function", "function_types",
