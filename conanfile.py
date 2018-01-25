@@ -8,7 +8,8 @@ class BoostLevel5GroupConan(ConanFile):
     name = "boost_level5group"
     version = "1.66.0"
     url = "https://github.com/bincrafters/conan-boost_level5group"
-
+    author = "Bincrafters <bincrafters@gmail.com>"
+    exports = ["LICENSE.md"]
     lib_short_names = [
         "concept_check", "conversion", "detail", "function", "function_types",
         "functional", "fusion", "iterator", "mpl", "optional", "type_index",
@@ -26,6 +27,7 @@ class BoostLevel5GroupConan(ConanFile):
         "boost_bind/1.66.0@bincrafters/testing",
         "boost_config/1.66.0@bincrafters/testing",
         "boost_core/1.66.0@bincrafters/testing",
+        "boost_integer/1.66.0@bincrafters/testing",
         "boost_move/1.66.0@bincrafters/testing",
         "boost_predef/1.66.0@bincrafters/testing",
         "boost_preprocessor/1.66.0@bincrafters/testing",
