@@ -10,13 +10,13 @@ class BoostLevel5GroupConan(ConanFile):
     url = "https://github.com/bincrafters/conan-boost_level5group"
     author = "Bincrafters <bincrafters@gmail.com>"
     exports = ["LICENSE.md"]
+    is_cycle_group = True
+    is_header_only = True
     lib_short_names = [
         "concept_check", "conversion", "detail", "function", "function_types",
         "functional", "fusion", "iterator", "mpl", "optional", "type_index",
         "typeof", "utility"]
 
-    is_cycle_group = True
-    is_header_only = True
 
     def package_id_additional(self):
         self.info.header_only()
